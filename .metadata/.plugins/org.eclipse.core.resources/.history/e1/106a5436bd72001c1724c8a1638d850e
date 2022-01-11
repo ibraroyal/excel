@@ -1,0 +1,34 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.Excel;
+import com.example.demo.repository.ExcelRepository;
+
+@Service
+public class ExcelServiceImpl implements ExcelService{
+	@Autowired
+	ExcelRepository excelRepository;
+	
+
+	@Override
+	public Excel findByIdExcel(Integer id) {
+		
+		return excelRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Excel> findAllExcel() {
+		
+		return excelRepository.findAll();
+	}
+
+	@Override
+	public Excel saveExcel(Excel excel) {
+		return excelRepository.save(excel);
+	}
+
+}
