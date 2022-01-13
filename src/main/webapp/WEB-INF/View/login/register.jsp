@@ -18,7 +18,7 @@
 
 
 <body>
-	<div class="container">
+	<div class="container" align= "center" align= "center" style="width:30%">
 		<spring:url value="/login/salvaUtente" var="saveURL" />
 
 		<form:form modelAttribute="oggettoUtente" method="post"
@@ -31,15 +31,15 @@
 				<form:errors path="username" cssClass="error" />
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" >
 				<label>firstName</label>
-				<form:input path="firstName" cssClass="form-control" id="firstName" />
+				<form:input path="firstName" cssClass="form-control" id="firstName"/>
 				<form:errors path="firstName" cssClass="error" />
 			</div>
 
 			<div class="form-group">
 				<label>lastName</label>
-				<form:input path="lastName" cssClass="form-control" id="firstName" />
+				<form:input path="lastName" cssClass="form-control" id="firstName"  />
 				<form:errors path="lastName" cssClass="error" />
 			</div>
 			

@@ -1,4 +1,4 @@
-package com.netgroup.exceldemo.controller;
+package com.netgroup.exceldemo.controller2.controllerJsp;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.netgroup.exceldemo.exportToExcel.ConverterExcel;
+import com.netgroup.exceldemo.util.ConverterExcel;
 
 
 @Controller
@@ -42,10 +42,9 @@ public class ControllerEsempio {
 	
 	@PostMapping("/upload/excel")
 	public ResponseEntity<?> handleFileUploadExcel(@RequestParam("file") MultipartFile mFile) throws IllegalStateException, IOException{
-		String fileName = mFile.getOriginalFilename();
 		
-		mFile.transferTo(new File("C:\\Users\\simon\\OneDrive\\Desktop\\esempio\\" + fileName));
-		converterExcel.Excel2Data("C:\\Users\\simon\\OneDrive\\Desktop\\esempio\\" + fileName);
+		
+		converterExcel.Excel2Data(System.getProperty("user.home")+"\\" + mFile.getOriginalFilename());
 		return ResponseEntity.ok("salvataggio riuscito");
 	}
 }

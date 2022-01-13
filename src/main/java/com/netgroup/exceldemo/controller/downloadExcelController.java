@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.netgroup.exceldemo.data.dao.Excel;
 import com.netgroup.exceldemo.service.ExcelService;
+import com.netgroup.exceldemo.util.ExcelUtils;
 
 @Controller
 @RequestMapping
@@ -32,7 +33,7 @@ public class DownloadExcelController {
 		
 		resp.setHeader(headerKey, headervalue);
 		List<Excel> listExcel = excelService.listFile();
-		excelUtils exp = new excelUtils(listExcel);
+		ExcelUtils exp = new ExcelUtils(listExcel);
 		exp.export(resp);
 	}
 	
