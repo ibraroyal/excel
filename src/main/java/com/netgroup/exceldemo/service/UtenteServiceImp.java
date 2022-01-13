@@ -10,7 +10,7 @@ import com.netgroup.exceldemo.data.dao.Utente;
 import com.netgroup.exceldemo.repositrory.UtenteRepository;
 
 @Service
-public class UtenteServiceImplement implements UtenteService {
+public class UtenteServiceImp implements UtenteService {
 
 	@Autowired
 	UtenteRepository uten;
