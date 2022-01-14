@@ -37,8 +37,7 @@ public class utenteController {
 		utenteService.salva(utente);
 		return new ModelAndView("/login/login");
 	}
-	
-	
+
 	@PostMapping(value= "/verify")
 	public void verifyUsers(@ModelAttribute("oggettoUtente") Utente utente) {
 		log.info("sono dentro");

@@ -8,9 +8,7 @@ public class UtenteDto {
 	
 	private String username; 
 
-
 	private String firstName;
-
 
 	private String lastName;
 
@@ -57,6 +55,4 @@ public class UtenteDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }

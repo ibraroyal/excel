@@ -12,10 +12,11 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Entity
 @Table
 public class Excel {
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,8 +30,9 @@ public class Excel {
 
 	@Column
 	private double prezzo;
-	
 
+	@Column
+	private LocalDate uploadDate;
 
 	public Integer getId() {
 		return id;
@@ -64,6 +66,7 @@ public class Excel {
 		this.prezzo = prezzo;
 	}
 
+	public LocalDate getUploadDate() {return uploadDate;}
 
-
+	public void setUploadDate(LocalDate uploadDate) {this.uploadDate = uploadDate;}
 }

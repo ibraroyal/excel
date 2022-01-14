@@ -38,9 +38,7 @@ public class Utente {
 	private String email;
 
 	@Column(name = "password")
-	@NotBlank
-	@NotEmpty
-	@NotNull
+	@NotBlank @NotEmpty @NotNull
 	private String password;
 
 	public int getId() {
@@ -93,9 +91,4 @@ public class Utente {
 	
 	@Column(name = "role")
 	private String role;
-	
-	
-
-	
-	
 }

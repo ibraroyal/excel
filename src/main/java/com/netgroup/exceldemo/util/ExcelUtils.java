@@ -31,7 +31,6 @@ public class ExcelUtils {
 	public ExcelUtils(List<Excel> listExcel) {
 		this.listExcel=listExcel;
 		workbook = new XSSFWorkbook();
-		
 	}
 	
 	private void createCell(Row row,int columnCount, Object value,CellStyle style) {
@@ -89,8 +88,8 @@ public class ExcelUtils {
   }
   
   public void export(HttpServletResponse response) throws IOException{
-    writeHeaderLine();
-    writeDataLines();
+  	writeHeaderLine();
+  	writeDataLines();
  
     ServletOutputStream outputStream=response.getOutputStream();
     workbook.write(outputStream);
