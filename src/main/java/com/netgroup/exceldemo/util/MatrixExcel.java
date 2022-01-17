@@ -165,27 +165,27 @@ public class MatrixExcel {
 				}
 
 			}
-			
+
 		}
 
-			if (righe < 1) {
-				error.add("EXCEL VUOTO - COMPILARE I CAMPI");
-				return error;
+		if (righe < 1) {
+			error.add("EXCEL VUOTO - COMPILARE I CAMPI");
+			return error;
+		}
+
+		if (righe == listExcel.size()) {
+			for (int i = 0; i < listExcel.size(); i++) {
+				excelRepository.save(listExcel.get(i));
 			}
+			String x = " salvato correttamente";
+			error.add(x);
+			return error;
 
-			if (righe == listExcel.size()) {
-				for (int i = 0; i < listExcel.size(); i++) {
-					excelRepository.save(listExcel.get(i));
-				}
-				String x = " salvato correttamente";
-				error.add(x);
-				return error;
+		} else {
+			error.add("ATTENZIONE COMPILAZIONE EXCEL NON CORRETTA - CARICAMENTO FALLITO");
+			return error;
 
-			} else {
-				error.add("ATTENZIONE COMPILAZIONE EXCEL NON CORRETTA - CARICAMENTO FALLITO");
-				return error;
-
-			}
+		}
 
 	}
 }
