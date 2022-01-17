@@ -35,8 +35,7 @@ public class DownloadExcelController {
 	public ModelAndView init(){
 		return new ModelAndView("download/download");
 	}
-	
-	//private static final Logger log = LoggerFactory.getLogger(DownloadExcelController.class);
+
 
 	@GetMapping(value = "/export")
 	public void exportToExcel(HttpServletResponse resp) throws IOException {
@@ -58,7 +57,10 @@ public class DownloadExcelController {
 		resp.setHeader(headerKey, headervalue);
 
 		List<Excel> listExcel = excelService.betweenDates(Date.valueOf(start).toLocalDate(),Date.valueOf(end).toLocalDate());
+
+
 		ExcelUtils exp = new ExcelUtils(listExcel);
+
 		exp.export(resp);
 	}
 }

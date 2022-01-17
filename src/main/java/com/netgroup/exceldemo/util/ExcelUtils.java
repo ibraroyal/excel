@@ -24,7 +24,6 @@ public class ExcelUtils {
  
 	private XSSFWorkbook workbook;
 	private XSSFSheet sheet;
-	
 	private List<Excel> listExcel;
 	
 	
@@ -50,7 +49,6 @@ public class ExcelUtils {
 	
 	private void writeHeaderLine() {
 		sheet=workbook.createSheet("excel");
-		
 		Row row = sheet.createRow(0);
 		CellStyle style = workbook.createCellStyle();
 		XSSFFont font=workbook.createFont();
@@ -62,39 +60,30 @@ public class ExcelUtils {
 		font.setFontHeightInPoints((short)(10));
 		row=sheet.createRow(1);
 		font.setBold(true);
-  
 	}
-  
-  
-  
-	
-  
-  private void writeDataLines() {
-    int rowCount=2;
-    
-    CellStyle style=workbook.createCellStyle();
-    XSSFFont font=workbook.createFont();
-    font.setFontHeight(14);
-    style.setFont(font);
-    
-    for(Excel excel:listExcel) {
-      Row row=sheet.createRow(rowCount++);
-      int columnCount=0;
-      createCell(row, columnCount++, excel.getNomeProdotto(), style);
-      createCell(row, columnCount++, excel.getCategoriaProdotto(), style);
-      createCell(row, columnCount++, excel.getPrezzo(), style);
 
-    }
+  private void writeDataLines() {
+		int rowCount=2;
+		CellStyle style=workbook.createCellStyle();
+		XSSFFont font=workbook.createFont();
+		font.setFontHeight(14);
+		style.setFont(font);
+		for(Excel excel:listExcel) {
+			Row row=sheet.createRow(rowCount++);
+			int columnCount=0;
+			createCell(row, columnCount++, excel.getNomeProdotto(), style);
+			createCell(row, columnCount++, excel.getCategoriaProdotto(), style);
+			createCell(row, columnCount++, excel.getPrezzo(), style);
+		}
   }
   
   public void export(HttpServletResponse response) throws IOException{
-  	writeHeaderLine();
-  	writeDataLines();
- 
-    ServletOutputStream outputStream=response.getOutputStream();
-    workbook.write(outputStream);
-    workbook.close();
-    outputStream.close();
+		writeHeaderLine();
+		writeDataLines();
+		ServletOutputStream outputStream=response.getOutputStream();
+		workbook.write(outputStream);
+		workbook.close();
+		outputStream.close();
   }
   
 }
