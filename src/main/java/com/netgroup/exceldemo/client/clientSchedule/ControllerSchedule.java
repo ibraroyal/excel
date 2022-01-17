@@ -51,7 +51,6 @@ public class ControllerSchedule {
 		return excelService.arrayToList(excel);
 	}
 
-	
 	@GetMapping(value="/all")
 	public List<Excel> findAll(){
 		return excelRepository.findAll();

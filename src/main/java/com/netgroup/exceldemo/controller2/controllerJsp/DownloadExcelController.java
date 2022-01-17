@@ -3,18 +3,13 @@ package com.netgroup.exceldemo.controller2.controllerJsp;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
-
 import javax.servlet.http.HttpServletResponse;
-
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.netgroup.exceldemo.data.dao.Excel;
@@ -36,7 +31,6 @@ public class DownloadExcelController {
 		return new ModelAndView("download/download");
 	}
 
-
 	@GetMapping(value = "/export")
 	public void exportToExcel(HttpServletResponse resp) throws IOException {
 		resp.setContentType("application/octet-stream");
@@ -57,10 +51,19 @@ public class DownloadExcelController {
 		resp.setHeader(headerKey, headervalue);
 
 		List<Excel> listExcel = excelService.betweenDates(Date.valueOf(start).toLocalDate(),Date.valueOf(end).toLocalDate());
-
-
-		ExcelUtils exp = new ExcelUtils(listExcel);
-
+		ExcelExport exp = new ExcelExport(listExcel);
 		exp.export(resp);
+	}
+
+	@PostMapping(value="/testing")
+	public ModelAndView test(){
+		Excel e=new Excel();
+		e.setCategoriaProdotto("categoria");
+		e.setNomeProdotto("nomeprod");
+		e.setPrezzo(195);
+		e.setUploadDate(LocalDate.now());
+
+		excelService.salva(e);
+		return new ModelAndView("download/download");
 	}
 }

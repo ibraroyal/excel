@@ -35,5 +35,9 @@
 		</tr>
 	</table>
 </FORM>
+<FORM method="POST" style="text-align: center" action="/download/testing">
+			<br>
+			<INPUT type="submit" class="btn btn-primary" value="Test">
+</FORM>
 </body>
 </html>
