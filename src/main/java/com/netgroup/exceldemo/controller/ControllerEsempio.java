@@ -86,8 +86,9 @@ public class ControllerEsempio {
 				model.addObject("list", list);
 				return model;
 			}
+			String[] strings = list.stream().toArray(String[]::new);
 			ModelAndView model = new ModelAndView("/Excel/upload");
-			model.addObject("list", list);
+			model.addObject("list", strings);
 			return model;
 			
 		}catch(Exception e) {

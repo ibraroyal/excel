@@ -2,6 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page isELIgnored="false"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Arrays"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,34 +24,42 @@
 			<br> <br>
 
 
-		<form method="POST" enctype="multipart/form-data" action="/upload/excel">
-			
-			
-			<div class="margin-top">
-			
-				<input class="btn btn-info" type="file" name="file" /><br> <br>
-				
-				<input class="btn btn-success" type="submit" value="Upload Excel" />
-				
-			</div>
-			
-		</form>
+			<form method="POST" enctype="multipart/form-data"
+				action="/upload/excel">
+
+
+				<div class="margin-top">
+
+					<input class="btn btn-info" type="file" name="file" /><br> <br>
+
+					<input class="btn btn-success" type="submit" value="Upload Excel" />
+
+				</div>
+
+			</form>
 			<br> <br>
 
-		
-				<c:forEach items="${list}" var="list" style="height:100px">
-					<tr>
-						<font color="black" face="font_family"> <td>${list} </td></font>
 
-					</tr>
-				</c:forEach>
-
+			<c:forEach items="${list}" var="var">
 			
-		<script>
-			
+				<div class="w-50 p-3" style="background-color: #eee;">
 
-		 
-	   </script>
+					
+						<c:out value="${var}"></c:out>
+						<br>
+						<br>
+					
+
+				</div>
+
+			</c:forEach>
+
+
+
+
+			<script>
+				
+			</script>
 
 			<br>
 
@@ -98,7 +110,7 @@
 						</table>
 
 
-					   
+
 					</div>
 				</div>
 			</div>
