@@ -1,4 +1,4 @@
-package com.netgroup.exceldemo.controller2.rest;
+package com.netgroup.exceldemo.rest;
 
 import java.io.File;
 import java.io.FileInputStream;

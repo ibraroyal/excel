@@ -1,4 +1,4 @@
-package com.netgroup.exceldemo.controller2.controllerJsp;
+package com.netgroup.exceldemo.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,12 +18,12 @@ import com.netgroup.exceldemo.util.ExcelUtils;
 
 @Controller
 @RequestMapping
-public class downloadExcelController {
+public class DownloadExcelController {
 
 	@Autowired
 	ExcelService excelService;
 	
-	private static final Logger log = LoggerFactory.getLogger(downloadExcelController.class);
+	private static final Logger log = LoggerFactory.getLogger(DownloadExcelController.class);
 
 	@GetMapping(value = "/export")
 	public void exportToExcel(HttpServletResponse resp) throws IOException {

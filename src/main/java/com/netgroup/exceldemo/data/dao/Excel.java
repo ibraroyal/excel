@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
+@Data
 @Entity
 @Table
 public class Excel {
@@ -48,6 +49,7 @@ public class Excel {
 	public void setLocaldate(LocalDate localdate) {
 		this.localdate = localdate;
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -82,6 +84,7 @@ public class Excel {
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
+
 
 
 
