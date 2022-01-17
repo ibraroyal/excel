@@ -11,10 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.netgroup.exceldemo.data.dao.Excel;
 import com.netgroup.exceldemo.service.ExcelService;
-import com.netgroup.exceldemo.util.ExcelUtils;
+import com.netgroup.exceldemo.util.ExcelExport;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,11 +34,11 @@ public class DownloadExcelController {
 	public void exportToExcel(HttpServletResponse resp) throws IOException {
 		resp.setContentType("application/octet-stream");
 		String headerKey = "Content-Disposition";
-		String headervalue = "attachment; filename=prodotto.xlsx";
+		String headervalue = "attachment; filename=prodotti.xlsx";
 		resp.setHeader(headerKey, headervalue);
 
 		List<Excel> listExcel = excelService.listFile();
-		ExcelUtils exp = new ExcelUtils(listExcel);
+		ExcelExport exp = new ExcelExport(listExcel);
 		exp.export(resp);
 	}
 
@@ -47,7 +46,7 @@ public class DownloadExcelController {
 	public void exportBetweenDates(@RequestParam("start") String start,@RequestParam("end") String end, HttpServletResponse resp) throws IOException {
 		resp.setContentType("application/octet-stream");
 		String headerKey = "Content-Disposition";
-		String headervalue = "attachment; filename=prodotto.xlsx";
+		String headervalue = "attachment; filename=prodotti.xlsx";
 		resp.setHeader(headerKey, headervalue);
 
 		List<Excel> listExcel = excelService.betweenDates(Date.valueOf(start).toLocalDate(),Date.valueOf(end).toLocalDate());
