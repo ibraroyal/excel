@@ -2,10 +2,11 @@ package com.netgroup.exceldemo.controller2.controllerJsp;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tomcat.util.http.fileupload.FileUploadBase.FileSizeLimitExceededException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netgroup.exceldemo.repository.ExcelRepository;
 import com.netgroup.exceldemo.util.ConverterExcel;
-import com.netgroup.exceldemo.data.*;
-import com.netgroup.exceldemo.data.dao.Excel;
 
-import io.swagger.models.Model;
 
 
 @Controller
@@ -63,22 +61,44 @@ public class ControllerEsempio {
 	}
 	
 	@PostMapping("/upload/excel")
-	public ResponseEntity<?> handleFileUploadExcel(@RequestParam("file") MultipartFile mFile) throws IllegalStateException, IOException{
-		try{
-			boolean check = converterExcel.Excel2Data(mFile.getInputStream());
-			if (check) {
-				return  ResponseEntity.ok("salvataggio riuscito");
-			}else {
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+	public ModelAndView handleFileUploadExcel(@RequestParam("file") MultipartFile mFile) throws FileSizeLimitExceededException {
+		try {
+			String filename = mFile.getOriginalFilename();
+			if(filename.equals("")){
+				List<String> list0 = new ArrayList<>();
+				list0.add("*** NESSUN FILE SELEZIONATO *** - SELEZIONARE FORMATO EXCEL ( .xls )");
+				ModelAndView model = new ModelAndView("/Excel/upload");
+				model.addObject("list", list0);
+				return model;
+
 			}
+			String x = " salvato correttamente";
+			List<String> list = converterExcel.Excel2Data(mFile.getInputStream());
+			String y = list.get(0);
+			if(x.equals(y)) {
+				list.add(0, filename);
+				ModelAndView model = new ModelAndView("/Excel/upload");
+				model.addObject("list", list);
+				return model;
+			}
+			ModelAndView model = new ModelAndView("/Excel/upload");
+			model.addObject("list", list);
+			return model;
 			
 		}catch(Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			List<String> list2 = new ArrayList<>();
+			String filename = mFile.getOriginalFilename();
+			ModelAndView model = new ModelAndView("/Excel/upload");
+			list2.add("FILE ' " + filename + " ' NON SUPPORTATO - SELEZIONARE FORMATO EXCEL ( .xls )");
+			model.addObject("list", list2);
+			return model;
 		}
-	}
-	
 
+
+
+	
+	}
 	
 	
 }
