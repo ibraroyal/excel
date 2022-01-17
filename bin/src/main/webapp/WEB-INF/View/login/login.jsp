@@ -16,7 +16,7 @@
 
 
 <body>
-<div class="container">
+<div class="container" align= "center" style="width:30%">
 		<spring:url value="/login/verify" var="saveURL" />
 
 		<form:form modelAttribute="oggettoUtente" method="post"
