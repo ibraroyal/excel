@@ -16,33 +16,35 @@
 	<div align="center" class="mt-5 bg">
 		<div class="ml-3">
 			<h2 class="text-center text-info">Upload Excel</h2>
+			<h6 class="text-center text-info">( Max file size 10 MB )</h6>
 			<br> <br>
 
-			<div class="margin-top">
-				<input class="btn btn-info" id="fileupload" type="file"
-					name="fileupload"> <br> <br>
 
-				<button type="submit" class="btn btn-success" id="uploadButton"
-					onclick="uploadFileExcel()">UPLOAD Excel</button>
+		<form method="POST" enctype="multipart/form-data" action="/upload/excel">
+			
+			
+			<div class="margin-top">
+			
+				<input class="btn btn-info" type="file" name="file" /><br> <br>
+				
+				<input class="btn btn-success" type="submit" value="Upload Excel" />
+				
 			</div>
+			
+		</form>
+			<br> <br>
+
+		
+				<c:forEach items="${list}" var="list" style="height:100px">
+					<tr>
+						<font color="black" face="font_family"> <td>${list} </td></font>
+
+					</tr>
+				</c:forEach>
 			
 		<script>
 			
-		  async function uploadFileExcel() {
-				let formData = new FormData();
-				formData.append("file", fileupload.files[0]);
-				let response = await
-				fetch('/upload/excel', {
-					method : "POST",
-					body : formData
-				});
 
-				if (response.status == 200) {
-					alert("Il file è stato caricato con successo.");
-				}else{
-					alert(" ** ATTENZIONE ** Il file non è corretto.")
-				}
-			}
 		 
 	   </script>
 
