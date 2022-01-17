@@ -1,5 +1,5 @@
 
-package com.netgroup.exceldemo.controller2.rest;
+package com.netgroup.exceldemo.rest;
 
 import java.io.IOException;
 import java.util.List;

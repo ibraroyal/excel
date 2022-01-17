@@ -19,12 +19,12 @@
 
 <body>
 	<div class="container" align= "center" align= "center" style="width:30%">
-		<spring:url value="/login/salvaUtente" var="saveURL" />
+		<spring:url value="/register" var="saveURL" />
 
 		<form:form modelAttribute="oggettoUtente" method="post"
 			action="${saveURL}" cssClass="form">
 			<form:hidden path="id" />
-
+			
 			<div class="form-group">
 				<label>username</label>
 				<form:input path="username" cssClass="form-control" id="username" />

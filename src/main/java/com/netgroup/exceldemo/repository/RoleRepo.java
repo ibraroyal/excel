@@ -3,11 +3,10 @@ package com.netgroup.exceldemo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.netgroup.exceldemo.data.dao.Utente;
+import com.netgroup.exceldemo.data.dao.Role;
 
 @Repository
-public interface UtenteRepository extends JpaRepository<Utente, Integer>{
+public interface RoleRepo extends JpaRepository<Role, Integer>{
 
-	Utente findByUsername(String user);
+	 Role findByName(String name);
 }
- 
