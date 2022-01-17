@@ -1,8 +1,6 @@
-package com.netgroup.exceldemo.client.clientScheduleLogin;
+package com.netgroup.exceldemo.client.service;
 
 
-import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -11,52 +9,52 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netgroup.exceldemo.client.model.ResponseToken;
 import com.netgroup.exceldemo.client.model.User;
 import com.netgroup.exceldemo.data.dao.Excel;
+import com.netgroup.exceldemo.service.ExcelService;
 
 
 
-
-@RestController
-public class TestController {
+@Service
+public class ServiceTemplate{
 
 	@Autowired
 	RestTemplate restTemplate;
+	
+	@Autowired
+	ExcelService excelService;
 
 	private static final String REGISTRATION_URL = "http://localhost:8080/users/register";
-	private static final String AUTHENTICATION_URL = "http://9ea1-84-220-227-85.ngrok.io/api/auth/signin";
-	private static final String RESPONSE_URL = "http://9ea1-84-220-227-85.ngrok.io/api/home/list";
+	private static final String AUTHENTICATION_URL = "http://localhost:8080/users/authenticate";
+	private static final String RESPONSE_URL = "http://localhost:8080/excel/token";
 
-	@RequestMapping(value = "/getResponse", method = RequestMethod.GET)
-	public List<Excel> getResponse() throws JsonProcessingException {
+	public Excel[] getResponse() throws JsonProcessingException {
 
-		List<Excel> excels = null;
-		Excel[] result = null;
-		// create user registration object
-		User user = getRegistrationUser();
-		// convert the user registration object to JSON
-		String registrationBody = getBody(user);
-		// create headers specifying that it is JSON request
-		HttpHeaders registrationHeaders = getHeaders();
-		HttpEntity<String> registrationEntity = new HttpEntity<String>(registrationBody, registrationHeaders);
+		Excel[] response = null;
+//		// create user registration object
+//		RegistrationUser registrationUser = getRegistrationUser();
+//		// convert the user registration object to JSON
+//		String registrationBody = getBody(registrationUser);
+//		// create headers specifying that it is JSON request
+//		HttpHeaders registrationHeaders = getHeaders();
+//		HttpEntity<String> registrationEntity = new HttpEntity<String>(registrationBody, registrationHeaders);
 
-//		 {
-//			 Register User
+		try {
+//			// Register User
 //			ResponseEntity<String> registrationResponse = restTemplate.exchange(REGISTRATION_URL, HttpMethod.POST,
 //					registrationEntity, String.class);
-//			    if the registration is successful		
-//			System.out.println(registrationResponse.getStatusCode().equals(HttpStatus.OK));
-//			
-//			if (registrationResponse.getStatusCode().equals(HttpStatus.OK)) 
-		try{
+//			   // if the registration is successful		
+//			if (registrationResponse.getStatusCode().equals(HttpStatus.OK)) {
 
 				// create user authentication object
 				User authenticationUser = getAuthenticationUser();
@@ -72,48 +70,38 @@ public class TestController {
 						HttpMethod.POST, authenticationEntity, ResponseToken.class);
 					
 				// if the authentication is successful		
-				System.out.println(authenticationResponse.getStatusCode().equals(HttpStatus.OK));
-				// if the authentication is successful		
 				if (authenticationResponse.getStatusCode().equals(HttpStatus.OK)) {
 					String token = "Bearer " + authenticationResponse.getBody().getToken();
 					HttpHeaders headers = getHeaders();
-					headers.set("accesToken", token);
+					headers.set("Authorization", token);
 					HttpEntity<String> jwtEntity = new HttpEntity<String>(headers);
 					// Use Token to get Response
-					ResponseEntity<Excel[]> response = restTemplate.exchange(RESPONSE_URL, HttpMethod.GET, jwtEntity,
+					ResponseEntity<Excel[]> helloResponse = restTemplate.exchange(RESPONSE_URL, HttpMethod.GET, jwtEntity,
 							Excel[].class);
-					if (response.getStatusCode().equals(HttpStatus.OK)) {
-						 result = response.getBody();
+					if (helloResponse.getStatusCode().equals(HttpStatus.OK)) {
+						response = helloResponse.getBody();
+						excelService.arrayToList(response);
 					}
-					excels = Arrays.asList(result);
-					return excels;
 				}
-				
-				
 			
-
-			
-				
-		}catch(Exception ex)
-		{
-			System.out.println("exception");
-			
+		} catch (Exception ex) {
+			System.out.println(ex);
 		}
-		return excels;
-		
+		return response;
 	}
+
 	
 	private User getRegistrationUser() {
 		User user = new User();
-		user.setUsername("utente");
-		user.setPassword("password");
+		user.setUsername("user");
+		user.setPassword("user");
 		return user;
 	}
 
 	private User getAuthenticationUser() {
 		User user = new User();
-		user.setUsername("utente");
-		user.setPassword("password");
+		user.setUsername("user");
+		user.setPassword("user");
 		return user;
 	}
 
