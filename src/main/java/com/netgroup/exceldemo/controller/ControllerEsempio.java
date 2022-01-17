@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.netgroup.exceldemo.repository.ExcelRepository;
 import com.netgroup.exceldemo.util.ConverterExcel;
+import com.netgroup.exceldemo.util.MatrixExcel;
 
 
 
@@ -29,6 +30,9 @@ public class ControllerEsempio {
 	
 	@Autowired
 	ExcelRepository excelRepository;
+	
+	@Autowired
+	MatrixExcel  matrix;
 
 //	@GetMapping("/index")
 //	public String hello() {
@@ -74,7 +78,7 @@ public class ControllerEsempio {
 
 			}
 			String x = " salvato correttamente";
-			List<String> list = converterExcel.Excel2Data(mFile.getInputStream());
+			List<String> list = matrix.matrix2Data(mFile.getInputStream());
 			String y = list.get(0);
 			if(x.equals(y)) {
 				list.add(0, filename);
