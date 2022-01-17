@@ -20,7 +20,7 @@
 <body>
 
 <%--  L' errore "Cannot resolve symbol" è un falso positivo   --%>
-<tags:navbar/>
+<tags:navbarprova/>
 &nbsp;
 
 <FORM method="get" style="text-align: center" action="/download/dates">
@@ -30,6 +30,7 @@
 			<td> <INPUT type="date" name="end">  </td>
 		</tr>
 		<tr>
+			<br>
 			<td>  <INPUT type="submit" class="btn btn-primary" name="formOk" value="Download"> </td>
 		</tr>
 	</table>
