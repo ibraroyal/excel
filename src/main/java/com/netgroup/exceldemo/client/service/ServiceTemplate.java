@@ -35,8 +35,8 @@ public class ServiceTemplate{
 	ExcelService excelService;
 
 	private static final String REGISTRATION_URL = "http://localhost:8080/users/register";
-	private static final String AUTHENTICATION_URL = "http://localhost:8080/users/authenticate";
-	private static final String RESPONSE_URL = "http://localhost:8080/excel/token";
+	private static final String AUTHENTICATION_URL = "http://localhost:8081/users/authenticate";
+	private static final String RESPONSE_URL = "http://localhost:8081/excel/token";
 
 	public Excel[] getResponse() throws JsonProcessingException {
 

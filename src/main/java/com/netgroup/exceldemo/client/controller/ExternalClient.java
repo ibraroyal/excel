@@ -38,38 +38,38 @@ public class ExternalClient {
 
 	public static String urlM = "https://8df0-151-73-239-129.ngrok.io/api/home/dto";
 
-	public static String urlF = "http://localhost:8080/excel/free";
+	public static String urlF = "http://localhost:8081/excel/free";
 
-//	@Scheduled(cron = "0 0 * * * *")
-//	@GetMapping(value = "/entity/dto")
-//	public List<Excel> getToDataDTO(){
-//		try {
-//			ResponseEntity<Excel[]> response = restTemplate.getForEntity(urlM, Excel[].class);
-//			Excel[] excel = response.getBody();
-//			return excelService.arrayToList(excel);
-//		}catch(Exception e) {
-//			System.out.println("##################################################");
-//			System.out.println("             Servizio esterno off                 ");
-//			System.out.println("##################################################");
-//			return null;
-//		}
-//
-//	}
-//	@Scheduled(cron = "0 0 * * * *")
-//	@GetMapping(value = "/entity")
-//	public List<Excel> getToData() {
-//		try {
-//			ResponseEntity<Excel[]> response = restTemplate.getForEntity(urlF, Excel[].class);
-//			Excel[] excel = response.getBody();
-//			return excelService.arrayToList(excel);
-//		}catch(Exception e) {
-//			System.out.println("##################################################");
-//			System.out.println("             Servizio esterno off                 ");
-//			System.out.println("##################################################");
-//			return null;
-//		}
-//
-//	}
+	@Scheduled(cron = "0 0 * * * *")
+	@GetMapping(value = "/entity/dto")
+	public List<Excel> getToDataDTO(){
+		try {
+			ResponseEntity<Excel[]> response = restTemplate.getForEntity(urlM, Excel[].class);
+			Excel[] excel = response.getBody();
+			return excelService.arrayToList(excel);
+		}catch(Exception e) {
+			System.out.println("##################################################");
+			System.out.println("             Servizio esterno off                 ");
+			System.out.println("##################################################");
+			return null;
+		}
+
+	}
+	@Scheduled(cron = "0 0 * * * *")
+	@GetMapping(value = "/entity")
+	public List<Excel> getToData() {
+		try {
+			ResponseEntity<Excel[]> response = restTemplate.getForEntity(urlF, Excel[].class);
+			Excel[] excel = response.getBody();
+			return excelService.arrayToList(excel);
+		}catch(Exception e) {
+			System.out.println("##################################################");
+			System.out.println("             Servizio esterno off                 ");
+			System.out.println("##################################################");
+			return null;
+		}
+
+	}
 	@Scheduled(cron = "0 0 * * * *")
 	@RequestMapping(value = "/getResponse", method = RequestMethod.GET)
 	public List<Excel> getToDataJWT(){
@@ -84,9 +84,9 @@ public class ExternalClient {
 	}
 
 
-//	@GetMapping(value="/all")
-//	public List<Excel> findAll(){
-//		return excelService.listFile();
-//	}
+	@GetMapping(value="/all")
+	public List<Excel> findAll(){
+		return excelService.listFile();
+	}
 
 }

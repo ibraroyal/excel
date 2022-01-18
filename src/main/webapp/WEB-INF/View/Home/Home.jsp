@@ -20,7 +20,7 @@
     <h2>Home</h2> <br> <br>
 
     <a class="btn btn-light" href="http://localhost:8080/index/jsp" role="button">Upload</a> <br> <br>
-    <a class="btn btn-light" href="http://localhost:8080/SpesaInvestimento/listaSpesaInvestimento" role="button">Export</a> <br>
+    <a class="btn btn-light" href="http://localhost:8080/download" role="button">Export</a> <br>
 
 </div>
 
