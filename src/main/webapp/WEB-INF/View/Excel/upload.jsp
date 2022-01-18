@@ -17,6 +17,8 @@
 <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
 </head>
 <body>
+<%--  L' errore "Cannot resolve symbol" è un falso positivo   --%>
+<tags:navbarprova/>
 	<div align="center" class="mt-5 bg">
 		<div class="ml-3">
 			<h2 class="text-center text-info">Upload Excel</h2>
@@ -41,14 +43,14 @@
 
 
 			<c:forEach items="${list}" var="var">
-			
+
 				<div class="w-50 p-3" style="background-color: #eee;">
 
-					
+
 						<c:out value="${var}"></c:out>
 						<br>
 						<br>
-					
+
 
 				</div>
 
@@ -58,7 +60,7 @@
 
 
 			<script>
-				
+
 			</script>
 
 			<br>
