@@ -166,6 +166,7 @@ public class MatrixExcel {
 				}
 			}
 		} catch (Exception e) {
+			error.clear();
 			error.add("Attenzione record assente a riga " + row.getRowNum());
 		}
 		if (righe < 1) {

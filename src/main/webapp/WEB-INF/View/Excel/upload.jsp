@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Arrays"%>
 <%--  L' errore "Cannot resolve dyrectory" è un falso positivo   --%>
-<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,13 +19,15 @@
 <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
 </head>
 <body>
-<%--  L' errore "Cannot resolve symbol" è un falso positivo   --%>
-<tags:navbarprova/>
+	<%--  L' errore "Cannot resolve symbol" è un falso positivo   --%>
+	<tags:navbarprova />
 	<div align="center" class="mt-5 bg">
 		<div class="ml-3">
 			<h2 class="text-center text-info">Upload Excel</h2>
 			<h6 class="text-center text-info">( Max file size 10 MB )</h6>
 			<br> <br>
+
+
 
 
 			<form method="POST" enctype="multipart/form-data"
@@ -49,9 +51,8 @@
 				<div class="w-50 p-3" style="background-color: #eee;">
 
 
-						<c:out value="${var}"></c:out>
-						<br>
-						<br>
+					<c:out value="${var}"></c:out>
+					<br> <br>
 
 
 				</div>
@@ -62,13 +63,23 @@
 
 
 			<script>
-
+				
 			</script>
 
 			<br>
 
 
+		</div> 
+		<div class="ml-5" align="left">
+			<h5>Download Template</h5>
+			<FORM method="GET" 
+				action="/download/template">
+				<br> <INPUT type="submit" class="btn btn-primary"
+					value="Template">
+			</FORM>
+
 		</div>
+
 		<br> <br>
 		<div class="ml-5" align="left">
 

@@ -63,7 +63,7 @@ public class ControllerEsempio {
 			String filename = mFile.getOriginalFilename();
 			if(filename.equals("")){
 				List<String> list0 = new ArrayList<>();
-				list0.add("*** NESSUN FILE SELEZIONATO *** - SELEZIONARE FORMATO EXCEL ( .xls )");
+				list0.add(" NESSUN FILE SELEZIONATO - SELEZIONARE FORMATO EXCEL ( .xls )");
 				ModelAndView model = new ModelAndView("/Excel/upload");
 				model.addObject("list", list0);
 				return model;
