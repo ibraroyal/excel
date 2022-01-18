@@ -8,9 +8,7 @@ public class UtenteDto {
 	
 	private String username; 
 
-
 	private String firstName;
-
 
 	private String lastName;
 
@@ -59,4 +57,6 @@ public class UtenteDto {
 	}
 	
 	
+	
+
 }

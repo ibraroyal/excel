@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,8 +55,13 @@ public class UtenteRest {
 
 	@GetMapping(value = "/{username}")
 	public Utente getUtente(@PathVariable("username") String username) {
-		Optional<Utente> u = uten.cercaUtente(username);
-		return u.get();
+		Utente u = uten.cercaUtente(username);
+		return u;
+	}
+	
+	@PostMapping(value = "/login")
+	public String verifyUsers(@ModelAttribute("oggettoUtente") Utente utente) {
+		return "login/login";
 	}
 
 	@GetMapping

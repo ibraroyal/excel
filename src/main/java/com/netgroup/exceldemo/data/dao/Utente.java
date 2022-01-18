@@ -1,19 +1,28 @@
 package com.netgroup.exceldemo.data.dao;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.ManyToAny;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@Data @NoArgsConstructor @AllArgsConstructor
 @Table(name = "utenti")
 public class Utente {
 
@@ -42,6 +51,10 @@ public class Utente {
 	@NotEmpty
 	@NotNull
 	private String password;
+
+	@Column(name = "role")
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Collection<Role> roles = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -90,9 +103,14 @@ public class Utente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	@Column(name = "role")
-	private String role;
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
 	
 	
 
