@@ -16,9 +16,4 @@ public class UtenteDto {
 
 	private String password;
 
-
-
-	
-	
-
 }

@@ -21,7 +21,6 @@ import lombok.Data;
 @Table
 public class Excel {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -38,12 +37,4 @@ public class Excel {
 	
 	@Column
 	private LocalDate localdate;
-	
-	
-
-	
-	
-
-
-
 }

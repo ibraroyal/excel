@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.netgroup.exceldemo.util.ExcelExport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.netgroup.exceldemo.data.dao.Excel;
 import com.netgroup.exceldemo.service.ExcelService;
-import com.netgroup.exceldemo.util.ExcelUtils;
 
 @Controller
 @RequestMapping
@@ -33,11 +33,8 @@ public class DownloadExcelController {
 		
 		resp.setHeader(headerKey, headervalue);
 		List<Excel> listExcel = excelService.listFile();
-		ExcelUtils exp = new ExcelUtils(listExcel);
+		ExcelExport exp = new ExcelExport(listExcel);
 		exp.export(resp);
 	}
-	
-	
-	
 
 }
