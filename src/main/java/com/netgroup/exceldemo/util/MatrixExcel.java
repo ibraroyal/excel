@@ -160,23 +160,18 @@ public class MatrixExcel {
 
 					if (check4 && check5 && check6) {
 						LocalDate ld = LocalDate.now();
-						excel.setLocaldate(ld);
+						excel.setUploadDate(ld);
 						listExcel.add(excel);
 					}
-
 				}
-
 			}
 		} catch (Exception e) {
 			error.add("Attenzione record assente a riga " + row.getRowNum());
-
 		}
-
 		if (righe < 1) {
 			error.add("EXCEL VUOTO - COMPILARE I CAMPI");
 			return error;
 		}
-
 		if (righe == listExcel.size()) {
 			for (int i = 0; i < listExcel.size(); i++) {
 				excelRepository.save(listExcel.get(i));

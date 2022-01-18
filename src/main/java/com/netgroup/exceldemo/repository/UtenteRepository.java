@@ -10,4 +10,3 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer>{
 
 	Utente findByUsername(String user);
 }
- 

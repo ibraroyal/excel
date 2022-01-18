@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tomcat.util.http.fileupload.FileUploadBase.FileSizeLimitExceededException;
-
+import com.netgroup.exceldemo.repository.ExcelRepository;
+import com.netgroup.exceldemo.util.MatrixExcel;
+import org.apache.tomcat.util.http.fileupload.FileUploadBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,61 +17,48 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
-import com.netgroup.exceldemo.repository.ExcelRepository;
 import com.netgroup.exceldemo.util.ConverterExcel;
-import com.netgroup.exceldemo.util.MatrixExcel;
-
-
 
 
 @Controller
 public class ControllerEsempio {
-	
+
 	@Autowired
 	ConverterExcel converterExcel;
-	
+
 	@Autowired
 	ExcelRepository excelRepository;
-	
+
 	@Autowired
-	MatrixExcel  matrix;
+	MatrixExcel matrix;
 
-
-//	@GetMapping("/index")
-//	public String hello() {
-//		return "uploader";
-//	}
-	
 	@GetMapping("index/home")
 	public ModelAndView home() {
 		ModelAndView modelandview = new ModelAndView("Home/Home");
 		return modelandview;
 	}
-	
+
 	@GetMapping("index/login")
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView("login/logindue");
 		return modelAndView;
 	}
 
-	
 	@GetMapping("/index/jsp")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("Excel/upload");
 		return model;
 	}
-	
+
 	@PostMapping("/upload")
 	public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile mFile) throws IllegalStateException, IOException{
 		String fileName = mFile.getOriginalFilename();
 		mFile.transferTo(new File("C:\\Users\\simon\\OneDrive\\Immagini\\" + fileName));
 		return ResponseEntity.ok("salvataggio riuscito");
 	}
-	
-	@PostMapping("/upload/excel")
 
-	public ModelAndView handleFileUploadExcel(@RequestParam("file") MultipartFile mFile) throws FileSizeLimitExceededException {
+	@PostMapping("/upload/excel")
+	public ModelAndView handleFileUploadExcel(@RequestParam("file") MultipartFile mFile) throws FileUploadBase.FileSizeLimitExceededException {
 		try {
 			String filename = mFile.getOriginalFilename();
 			if(filename.equals("")){
@@ -79,7 +67,6 @@ public class ControllerEsempio {
 				ModelAndView model = new ModelAndView("/Excel/upload");
 				model.addObject("list", list0);
 				return model;
-
 			}
 			String x = " salvato correttamente";
 			List<String> list = matrix.matrix2Data(mFile.getInputStream());
@@ -94,7 +81,6 @@ public class ControllerEsempio {
 			ModelAndView model = new ModelAndView("/Excel/upload");
 			model.addObject("list", strings);
 			return model;
-			
 		}catch(Exception e) {
 			List<String> list2 = new ArrayList<>();
 			String filename = mFile.getOriginalFilename();
@@ -103,13 +89,5 @@ public class ControllerEsempio {
 			model.addObject("list", list2);
 			return model;
 		}
-
-
-
-	
-
 	}
-	
-	
 }
-

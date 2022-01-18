@@ -22,13 +22,8 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	
+
 	@Column(name = "name")
 	@NotBlank @NotEmpty @NotNull
 	private String name;
-
-
-	
-	
 }
