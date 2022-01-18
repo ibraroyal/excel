@@ -41,14 +41,14 @@
 
 
 			<c:forEach items="${list}" var="var">
-			
+
 				<div class="w-50 p-3" style="background-color: #eee;">
 
-					
+
 						<c:out value="${var}"></c:out>
 						<br>
 						<br>
-					
+
 
 				</div>
 
@@ -58,7 +58,7 @@
 
 
 			<script>
-				
+
 			</script>
 
 			<br>

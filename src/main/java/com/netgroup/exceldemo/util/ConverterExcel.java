@@ -23,6 +23,7 @@ import com.netgroup.exceldemo.data.dao.CategoriaProdotto;
 import com.netgroup.exceldemo.data.dao.Excel;
 import com.netgroup.exceldemo.repository.ExcelRepository;
 
+
 @Component
 public class ConverterExcel {
 
@@ -91,7 +92,7 @@ public class ConverterExcel {
 							error.add(errCategoria);
 						}
 						break;
-						
+
 					}catch(Exception e) {
 						String errCategoria = "*** COLONNA ' Categoria ' ASSENTE ( Consultare la lista delle categorie ) ***";
 						error.add(errCategoria);
@@ -111,12 +112,12 @@ public class ConverterExcel {
 							error.add(errPrezzo);
 						}
 						break;
-						
+
 					}catch(Exception e) {
 						String errPrezzo = "*** COLONNA ' Prezzo ' ASSENTE ***";
 						error.add(errPrezzo);
 						break;
-						
+
 					}
 
 				}
@@ -188,7 +189,7 @@ public class ConverterExcel {
 
 					}
 
-				} 
+				}
 			} catch (Exception e) {
 				error.add("compilare bene");
 
@@ -200,13 +201,13 @@ public class ConverterExcel {
 
 			e.printStackTrace();
 		}
-		
+
 
 		if(righe < 1) {
 			error.add("EXCEL VUOTO - COMPILARE I CAMPI");
 			return error;
 		}
-		
+
 		if (righe == listaExcel.size()) {
 			for (int i = 0; i < listaExcel.size(); i++) {
 				excelRepository.save(listaExcel.get(i));
@@ -214,7 +215,7 @@ public class ConverterExcel {
 			String x = " salvato correttamente";
 			error.add(x);
 			return error;
-			
+
 		} else {
 			error.add("ATTENZIONE COMPILAZIONE EXCEL NON CORRETTA - CARICAMENTO FALLITO");
 			return error;

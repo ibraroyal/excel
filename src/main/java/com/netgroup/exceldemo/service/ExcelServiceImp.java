@@ -1,5 +1,7 @@
 package com.netgroup.exceldemo.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +34,12 @@ public class ExcelServiceImp implements ExcelService {
 			excelRepo.save(excelList.get(i));
 		}
 		return excelList;
+	}
+
+	@Override
+	public List<Excel> betweenDates(LocalDate start, LocalDate end) {
+		List<Excel> lista=excelRepo.findBetweenDates(start,end);
+		return lista;
 	}
 
 }

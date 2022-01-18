@@ -47,9 +47,7 @@ public class Utente {
 	private String email;
 
 	@Column(name = "password")
-	@NotBlank
-	@NotEmpty
-	@NotNull
+	@NotBlank @NotEmpty @NotNull
 	private String password;
 
 	@Column(name = "role")
