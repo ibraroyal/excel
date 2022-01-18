@@ -60,12 +60,12 @@ public class MatrixExcel {
 					if (lowerNomeProdotto.equals(lowerCNomeProdotto)) {
 						check1 = true;
 					} else {
-						String errProdotto = "*** COLONNA ' Nome Prodotto ' ASSENTE ***";
+						String errProdotto = " COLONNA ' Nome Prodotto ' ASSENTE ";
 						error.add(errProdotto);
 					}
 					break;
 				} catch (Exception e) {
-					String errProdotto = "*** COLONNA ' Nome Prodotto ' ASSENTE ***";
+					String errProdotto = " COLONNA ' Nome Prodotto ' ASSENTE ";
 					error.add(errProdotto);
 					break;
 				}
@@ -79,13 +79,13 @@ public class MatrixExcel {
 					if (lowerCategoria.equals(lowerCCategoria)) {
 						check2 = true;
 					} else {
-						String errCategoria = "*** COLONNA ' Categoria ' ASSENTE ( Consultare la lista delle categorie ) ***";
+						String errCategoria = " COLONNA ' Categoria ' ASSENTE ( Consultare la lista delle categorie ) ";
 						error.add(errCategoria);
 					}
 					break;
 
 				} catch (Exception e) {
-					String errCategoria = "*** COLONNA ' Categoria ' ASSENTE ( Consultare la lista delle categorie ) ***";
+					String errCategoria = " COLONNA ' Categoria ' ASSENTE ( Consultare la lista delle categorie ) ";
 					error.add(errCategoria);
 					break;
 				}
@@ -99,13 +99,13 @@ public class MatrixExcel {
 					if (lowerPrezzo.equals(lowerCPrezzo)) {
 						check3 = true;
 					} else {
-						String errPrezzo = "*** COLONNA ' Prezzo ' ASSENTE ***";
+						String errPrezzo = " COLONNA ' Prezzo ' ASSENTE ";
 						error.add(errPrezzo);
 					}
 					break;
 
 				} catch (Exception e) {
-					String errPrezzo = "*** COLONNA ' Prezzo ' ASSENTE ***";
+					String errPrezzo = " COLONNA ' Prezzo ' ASSENTE ";
 					error.add(errPrezzo);
 					break;
 
@@ -113,58 +113,62 @@ public class MatrixExcel {
 			}
 
 		}
+		try {
+			if (check1 && check2 && check3) {
+				for (int i = 0; i < righe; i++) {
+					row = rowIterator.next();
+					Excel excel = new Excel();
+					for (int j = 0; j < colonne; j++) {
+						c = row.getCell(j);
+						switch (j) {
+						case 0:
+							try {
+								String nomeProdotto = c.getStringCellValue();
+								excel.setNomeProdotto(nomeProdotto);
+								break;
+							} catch (Exception e) {
+								error.add(" Errore Nome-Prodotto a riga " + (i + 1) );
+								check4 = false;
+								break;
+							}
 
-		if (check1 && check2 && check3) {
-			for (int i = 0; i < righe; i++) {
-				row = rowIterator.next();
-				Excel excel = new Excel();
-				for (int j = 0; j < colonne; j++) {
-					c = row.getCell(j);
-					switch (j) {
-					case 0:
-						try {
-							String nomeProdotto = c.getStringCellValue();
-							excel.setNomeProdotto(nomeProdotto);
-							break;
-						} catch (Exception e) {
-							error.add("*** Errore Nome-Prodotto a riga " + (i + 1) + " ***  ");
-							check4 = false;
-							break;
-						}
+						case 1:
+							try {
+								String categoria = c.getStringCellValue();
+								String catogoriaUP = categoria.toUpperCase();
+								excel.setCategoriaProdotto(CategoriaProdotto.valueOf(catogoriaUP));
+								break;
+							} catch (Exception e) {
+								error.add(" Errore Categoria a riga " + (i + 1) );
+								check5 = false;
+								break;
+							}
 
-					case 1:
-						try {
-							String categoria = c.getStringCellValue();
-							String catogoriaUP = categoria.toUpperCase();
-							excel.setCategoriaProdotto(CategoriaProdotto.valueOf(catogoriaUP));
-							break;
-						} catch (Exception e) {
-							error.add("*** Errore Categoria a riga " + (i + 1) + " ***  ");
-							check5 = false;
-							break;
-						}
+						case 2:
+							try {
+								excel.setPrezzo(c.getNumericCellValue());
+								break;
+							} catch (Exception e) {
+								error.add(" Errore Prezzo  a riga " + (i + 1) );
+								check6 = false;
+								break;
+							}
 
-					case 2:
-						try {
-							excel.setPrezzo(c.getNumericCellValue());
-							break;
-						} catch (Exception e) {
-							error.add("*** Errore Prezzo  a riga " + (i + 1) + " ***  ");
-							check6 = false;
-							break;
 						}
 
 					}
 
-				}
+					if (check4 && check5 && check6) {
+						LocalDate ld = LocalDate.now();
+						excel.setLocaldate(ld);
+						listExcel.add(excel);
+					}
 
-				if (check4 && check5 && check6) {
-					LocalDate ld = LocalDate.now();
-					excel.setLocaldate(ld);
-					listExcel.add(excel);
 				}
 
 			}
+		} catch (Exception e) {
+			error.add("Attenzione record assente a riga " + row.getRowNum());
 
 		}
 
