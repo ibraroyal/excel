@@ -39,5 +39,9 @@
 			<br>
 			<INPUT type="submit" class="btn btn-primary" value="Test">
 </FORM>
+<FORM method="GET" style="text-align: center" action="/download/template">
+	<br>
+	<INPUT type="submit" class="btn btn-primary" value="Template">
+</FORM>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.netgroup.exceldemo.controller2.controllerJsp;
+package com.netgroup.exceldemo.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,29 +21,20 @@ public class ControllerEsempio {
 	@Autowired
 	ConverterExcel converterExcel;
 
-//	@GetMapping("/index")
-//	public String hello() {
-//		return "uploader";
-//	}
-	
-	
 	@GetMapping("/index/jsp")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("Excel/upload");
 		return model;
 	}
-	
+
 	@PostMapping("/upload")
 	public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile mFile) throws IllegalStateException, IOException{
-//		String fileName = mFile.getOriginalFilename();
-//		mFile.transferTo(new File("C:\\Users\\simon\\OneDrive\\Immagini\\" + fileName));
 		converterExcel.Excel2Data(mFile.getInputStream());
 		return ResponseEntity.ok("salvataggio riuscito");
 	}
-	
+
 	@PostMapping("/upload/excel")
 	public ResponseEntity<?> handleFileUploadExcel(@RequestParam("file") MultipartFile mFile) throws IllegalStateException, IOException{
-
 		converterExcel.Excel2Data(mFile.getInputStream());
 		return ResponseEntity.ok("salvataggio riuscito");
 	}

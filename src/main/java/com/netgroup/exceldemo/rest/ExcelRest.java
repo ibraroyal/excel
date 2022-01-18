@@ -1,5 +1,5 @@
 
-package com.netgroup.exceldemo.controller2.rest;
+package com.netgroup.exceldemo.rest;
 
 import com.netgroup.exceldemo.data.dao.Excel;
 import com.netgroup.exceldemo.service.ExcelService;
