@@ -15,15 +15,16 @@ import com.netgroup.exceldemo.service.UtenteService;
 
 @Controller
 @RequestMapping(value = "/login")
-public class utenteController {
+public class UtenteController {
 
+	
 //	@Autowired
 //	EncryptionUtils encryptionPass;
 	
 	@Autowired
 	UtenteService utenteService;
 	
-	private static final Logger log = LoggerFactory.getLogger(utenteController.class);
+	private static final Logger log = LoggerFactory.getLogger(UtenteController.class);
 	
 	
 	@GetMapping(value = "/register")
