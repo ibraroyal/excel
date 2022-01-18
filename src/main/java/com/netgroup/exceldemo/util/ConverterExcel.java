@@ -179,7 +179,7 @@ public class ConverterExcel {
 						try {
 							if (check4 && check5 && check6) {
 								LocalDate ld = LocalDate.now();
-								excel.setLocaldate(ld);
+								excel.setUploadDate(ld);
 								listaExcel.add(excel);
 							}
 

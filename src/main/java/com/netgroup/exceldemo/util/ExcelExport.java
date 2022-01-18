@@ -5,10 +5,9 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.Row;
+
+import com.netgroup.exceldemo.data.dao.CategoriaProdotto;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -85,8 +84,10 @@ public class ExcelExport {
 			cell.setCellValue((Integer) value);
 		}else if(value instanceof Double) {
 			cell.setCellValue((Double) value);
-		}else {
+		}else if(value instanceof String){
 			cell.setCellValue((String) value);
+		}else if(value instanceof CategoriaProdotto){
+			cell.setCellValue(value.toString());
 		}
 		cell.setCellStyle(style);
 	}
