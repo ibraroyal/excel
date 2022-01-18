@@ -150,7 +150,7 @@ public class MatrixExcel {
 							break;
 						} catch (Exception e) {
 							error.add("*** Errore Prezzo  a riga " + (i + 1) + " ***  ");
-							check5 = false;
+							check6 = false;
 							break;
 						}
 
